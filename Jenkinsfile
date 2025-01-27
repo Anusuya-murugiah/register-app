@@ -59,11 +59,10 @@ pipeline {
     stage('build the image') {
       steps {
         script {
-          docker.withRegistry("https://${DOCKER_USER}", DOCKER_PASS) {
-            docker_image = docker.build "${IMAGE_TAG}"
-        
-            docker_image.push("${IMAGE_TAG}")
-            docker_image.push('latest')
+           docker.withRegistry("https://index.docker.io/v1/", DOCKER_PASS) {
+                  def docker_image = docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
+                  docker_image.push("${IMAGE_TAG}")
+                  docker_image.push("latest")
           }
         }
       }
