@@ -10,7 +10,8 @@ pipeline {
     RELEASE = "1.0.0"
     DOCKER_USER = "anusuya211998"
     DOCKER_PASS = "dockerhub"
-    IMAGE_NAME = 
+    IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+    IMAGE_TAG = "${RELEASE} - ${BUILD_NUMBER}"
   }
   stages {
     stage('cleanup the workspace') {
@@ -55,7 +56,20 @@ pipeline {
       }
     }
 
-    stage(
+    stage('build the image') {
+      steps {
+        script {
+          docker.withRegistry('',DOCKER_PASS) {
+            docker.image = docker.build "${IMAGE_TAG}"
+          }
+
+          docker.withRegistry('',DOCKER_PASS) {
+            docker_image.push("${IMAGE_TAG}")
+            docker_image.push('latest')
+        }
+      }
+     }
+    }    
     
   } 
 }
