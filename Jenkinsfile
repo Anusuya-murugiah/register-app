@@ -4,6 +4,14 @@ pipeline {
     jdk 'java17'
     maven 'maven3'
   }
+
+  environment {
+    APP_NAME = "register-app-pipeline"
+    RELEASE = "1.0.0"
+    DOCKER_USER = "anusuya211998"
+    DOCKER_PASS = "dockerhub"
+    IMAGE_NAME = 
+  }
   stages {
     stage('cleanup the workspace') {
       steps {
@@ -46,7 +54,8 @@ pipeline {
         }
       }
     }
-    
+
+    stage(
     
   } 
 }
