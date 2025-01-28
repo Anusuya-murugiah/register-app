@@ -78,13 +78,7 @@ pipeline {
       }
     }
 
-   # stage('trigger the CD pipeline') {
-   #   steps {
-   #     script {
-   #       sh "curl -v -k --user "Anusuya Murugiah":${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-3-226-130-106.compute-1.amazonaws.com:8080/job/register-deployment-app/buildWithParameters?token=gitops-token'"  
-   #     }
-   #   }
-   # }
+   
     
   } 
 }
